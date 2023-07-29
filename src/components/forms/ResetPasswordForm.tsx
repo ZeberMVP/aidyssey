@@ -47,7 +47,7 @@ export function ResetPasswordForm() {
 				})
 
 				if (firstFactor.status === 'needs_first_factor') {
-					router.push('/signin/reset-password/step2')
+					router.push('/sign-in/reset-password/step2')
 					toast.message('Check your email', {
 						description: 'We sent you a 6-digit verification code.',
 					})
