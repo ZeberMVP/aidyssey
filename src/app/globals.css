@@ -8,6 +8,17 @@ body,
   height: 100%;
 }
 
+nav {
+  transition: width 0.5s ease-in-out;
+  padding: 1.8rem 0.85rem;
+}
+
+.hide {
+  transition: all 0.1s ease-in-out;
+}
+
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
