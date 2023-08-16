@@ -4,7 +4,7 @@ import { useAuth } from '@clerk/nextjs'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
-const page = () => {
+export default function LandingPage() {
 	const { isSignedIn } = useAuth()
 
 	useEffect(() => {
@@ -24,5 +24,3 @@ const page = () => {
 		</div>
 	)
 }
-
-export default page
