@@ -8,7 +8,6 @@ export default function LandingPage() {
 	const { isSignedIn } = useAuth()
 
 	useEffect(() => {
-		// Verificar si el usuario está signed in y redirigir a /dashboard si es así
 		if (isSignedIn) {
 			window.location.href = '/dashboard'
 		}
