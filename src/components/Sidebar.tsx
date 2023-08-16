@@ -9,37 +9,27 @@ import { useState } from 'react'
 import { Icons } from './Icons'
 import { usePathname } from 'next/navigation'
 
+const links = {
+	dashboard: '/dashboard',
+	conversation: '/conversation',
+	image: '/image',
+	video: '/video',
+	music: '/music',
+	code: '/code',
+	settings: '/settings',
+}
+
 const Sidebar = () => {
 	const { user } = useUser()
-
 	const pathname = usePathname()
-
-	const links = {
-		dashboard: '/dashboard',
-		conversation: '/conversation',
-		image: '/image',
-		video: '/video',
-		music: '/music',
-		code: '/code',
-		settings: '/settings',
-	}
-
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
 	return (
 		<>
-			<Icons.menu
-				className={cn(isSidebarOpen ? '' : 'md:hidden ml-4 mt-4 w-6 h-6', '')}
-				onClick={() =>
-					isSidebarOpen ? setIsSidebarOpen(false) : setIsSidebarOpen(true)
-				}
-			/>
 			<nav
 				className={cn(
-					isSidebarOpen
-						? 'w-72 absolute flex'
-						: 'w-20 hidden md:absolute md:flex',
-					'top-0 left-0 h-[100vh] bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
+					isSidebarOpen ? 'w-72' : 'w-20',
+					'top-0 left-0 h-[100vh] absolute flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
 				)}
 			>
 				<div
