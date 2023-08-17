@@ -58,11 +58,11 @@ import {
 	VolumeX,
 	Wallet,
 	X,
-	type Icon as LucideIcon,
+	type XIcon as LucideIcon,
 	type LucideProps,
 } from 'lucide-react'
 
-export type Icon = LucideIcon
+export type Icon = typeof LucideIcon
 
 export const Icons = {
 	sun: SunMedium,

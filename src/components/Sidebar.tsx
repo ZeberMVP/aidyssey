@@ -29,7 +29,7 @@ const Sidebar = () => {
 			<nav
 				className={cn(
 					isSidebarOpen ? 'w-72' : 'w-20',
-					'top-0 left-0 h-[100vh] absolute flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
+					'top-0 left-0 h-full absolute flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
 				)}
 			>
 				<div
