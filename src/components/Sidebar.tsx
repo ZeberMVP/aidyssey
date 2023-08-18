@@ -29,7 +29,7 @@ const Sidebar = () => {
 			<nav
 				className={cn(
 					isSidebarOpen ? 'w-72' : 'w-20',
-					'top-0 left-0 h-full absolute flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
+					'top-0 left-0 h-full fixed flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
 				)}
 			>
 				<div
@@ -258,8 +258,7 @@ const Sidebar = () => {
 							className={cn(
 								isSidebarOpen
 									? ''
-									: 'opacity-0 absolute hidden pointer-events-none hide',
-								'avatar__name '
+									: 'opacity-0 absolute hidden pointer-events-none hide'
 							)}
 						>
 							<div className='font-bold text-left max-w-[160px] truncate'>
