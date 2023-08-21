@@ -26,7 +26,7 @@ export function Header({
 			{description ? (
 				<p
 					className={cn(
-						'line-clamp-2 text-muted-foreground',
+						'line-clamp-2 text-muted font-medium',
 						size === 'default' && 'text-lg'
 					)}
 				>

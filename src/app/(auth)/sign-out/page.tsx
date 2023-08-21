@@ -9,7 +9,7 @@ export default function SignOutPage() {
 	return (
 		<Shell className='max-w-xs'>
 			<Header
-				title='Sign out'
+				title=''
 				description='Are you sure you want to sign out?'
 				size='sm'
 				className='text-center'

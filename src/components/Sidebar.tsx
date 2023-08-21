@@ -7,9 +7,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Icons } from './Icons'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { MonitorPause } from 'lucide-react'
 import FreeCounter from './FreeCounter'
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from './ui/alert-dialog'
 
 const links = {
 	dashboard: '/dashboard',
@@ -28,6 +39,7 @@ interface SidebarProps {
 const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 	const { user } = useUser()
 	const pathname = usePathname()
+	const router = useRouter()
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
 	return (
@@ -225,8 +237,8 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 					<ul className='list-none relative space-y-2'>
 						<li className='relative'>
 							<Link
-								href={links.settings}
-								title='Settings'
+								href='#'
+								title='Upgrade'
 								className={cn(
 									isSidebarOpen ? 'mx-2' : ' w-14',
 									links.settings === pathname ? 'bg-slate-700 rounded-xl' : '',
@@ -277,26 +289,49 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 							'flex items-center gap-5 flex-row mt-4'
 						)}
 					>
-						<div className='relative flex'>
-							<Avatar>
-								<AvatarImage src={user?.imageUrl} alt="User's avatar" />
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-						</div>
-						<section
-							className={cn(
-								isSidebarOpen
-									? ''
-									: 'opacity-0 absolute hidden pointer-events-none hide'
-							)}
-						>
-							<div className='font-bold text-left max-w-[160px] truncate'>
-								{user?.username ?? user?.fullName}
-							</div>
-							<div className='email text-sm max-w-[160px] truncate'>
-								{user?.primaryEmailAddress?.emailAddress}
-							</div>
-						</section>
+						<AlertDialog>
+							<AlertDialogTrigger asChild className='cursor-pointer'>
+								<div className='relative flex gap-5'>
+									<Avatar className='mt-[3px]'>
+										<AvatarImage src={user?.imageUrl} alt="User's avatar" />
+										<AvatarFallback>CN</AvatarFallback>
+									</Avatar>
+									<section
+										className={cn(
+											isSidebarOpen
+												? ''
+												: 'opacity-0 absolute hidden pointer-events-none hide'
+										)}
+									>
+										<div className='font-bold text-left max-w-[160px] truncate'>
+											{user?.username ?? user?.fullName}
+										</div>
+										<div className='email text-sm max-w-[160px] truncate'>
+											{user?.primaryEmailAddress?.emailAddress}
+										</div>
+									</section>
+								</div>
+							</AlertDialogTrigger>
+							<AlertDialogContent>
+								<AlertDialogHeader>
+									<AlertDialogTitle>Do you want to sign out?</AlertDialogTitle>
+									<AlertDialogDescription>
+										You will have to sign in again if you want to continue using
+										the app.
+									</AlertDialogDescription>
+								</AlertDialogHeader>
+								<AlertDialogFooter>
+									<AlertDialogCancel>Cancel</AlertDialogCancel>
+									<AlertDialogAction
+										onClick={() => {
+											router.push('./sign-out')
+										}}
+									>
+										Sign out
+									</AlertDialogAction>
+								</AlertDialogFooter>
+							</AlertDialogContent>
+						</AlertDialog>
 					</div>
 				</div>
 			</nav>

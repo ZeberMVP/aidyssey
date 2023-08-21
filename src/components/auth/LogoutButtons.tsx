@@ -17,6 +17,16 @@ export function LogOutButtons() {
 
 	return (
 		<div className='flex w-full items-center space-x-2'>
+			<Button
+				aria-label='Go back to the previous page'
+				variant='outline'
+				size='sm'
+				className='w-full'
+				onClick={() => router.back()}
+				disabled={isPending}
+			>
+				Go back
+			</Button>
 			{mounted ? (
 				<SignOutButton
 					signOutCallback={() =>
@@ -34,7 +44,7 @@ export function LogOutButtons() {
 						{isPending && (
 							<Icons.spinner className='mr-2 h-4 w-4 animate-spin' />
 						)}
-						Log out
+						Sign out
 					</Button>
 				</SignOutButton>
 			) : (
@@ -47,16 +57,6 @@ export function LogOutButtons() {
 					Log out
 				</Skeleton>
 			)}
-			<Button
-				aria-label='Go back to the previous page'
-				variant='outline'
-				size='sm'
-				className='w-full'
-				onClick={() => router.back()}
-				disabled={isPending}
-			>
-				Go back
-			</Button>
 		</div>
 	)
 }
