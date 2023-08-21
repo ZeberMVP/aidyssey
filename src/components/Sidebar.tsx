@@ -5,9 +5,11 @@ import { cn } from '@/lib/utils'
 import { useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Icons } from './Icons'
 import { usePathname } from 'next/navigation'
+import { MonitorPause } from 'lucide-react'
+import FreeCounter from './FreeCounter'
 
 const links = {
 	dashboard: '/dashboard',
@@ -19,7 +21,11 @@ const links = {
 	settings: '/settings',
 }
 
-const Sidebar = () => {
+interface SidebarProps {
+	apiLimitCount: number
+}
+
+const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 	const { user } = useUser()
 	const pathname = usePathname()
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -217,6 +223,29 @@ const Sidebar = () => {
 				<div className='flex justify-center flex-col mt-auto'>
 					<div className='w-full bg-slate-300 h-[1px] block'></div>
 					<ul className='list-none relative space-y-2'>
+						<li className='relative'>
+							<Link
+								href={links.settings}
+								title='Settings'
+								className={cn(
+									isSidebarOpen ? 'mx-2' : ' w-14',
+									links.settings === pathname ? 'bg-slate-700 rounded-xl' : '',
+									'my-0 p-3 text-slate-200 text-xl flex items-center h-14'
+								)}
+							>
+								<MonitorPause className='h-8 w-8 text-slate-200 -ml-[2px]' />
+								<span
+									className={cn(
+										isSidebarOpen
+											? ''
+											: 'opacity-0 absolute hidden pointer-events-none hide',
+										'ml-[30px] opacity-[1]'
+									)}
+								>
+									<FreeCounter apiLimitCount={apiLimitCount} />
+								</span>
+							</Link>
+						</li>
 						<li className='relative'>
 							<Link
 								href={links.settings}
