@@ -21,7 +21,7 @@ const FreeCounter: FC<FreeCounterProps> = ({
 	}
 
 	return (
-		<p className='text-base pt-1'>
+		<p className='text-sm pt-1'>
 			{apiLimitCount} / {MAX_FREE_COUNTS} Free Generations
 		</p>
 	)

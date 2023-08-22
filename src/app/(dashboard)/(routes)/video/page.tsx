@@ -15,10 +15,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { formSchema } from './constants'
+import { useProModal } from '@/hooks/use-pro-modal'
 
 export default function VideoPage() {
 	const router = useRouter()
 	const [video, setVideo] = useState<string>()
+	const proModal = useProModal()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -38,7 +40,9 @@ export default function VideoPage() {
 			setVideo(response.data[0])
 			form.reset()
 		} catch (error: any) {
-			// TODO: Open Pro Modal
+			if (error?.response?.status === 403) {
+				proModal.onOpen()
+			}
 			console.log(error)
 		} finally {
 			router.refresh()

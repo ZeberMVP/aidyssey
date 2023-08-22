@@ -20,10 +20,12 @@ import { useRouter } from 'next/navigation'
 import { ChatCompletionRequestMessage } from 'openai'
 import { useState } from 'react'
 import { formSchema } from './constants'
+import { useProModal } from '@/hooks/use-pro-modal'
 
 export default function CodePage() {
 	const router = useRouter()
 	const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
+	const proModal = useProModal()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -49,7 +51,9 @@ export default function CodePage() {
 
 			form.reset()
 		} catch (error: any) {
-			// TODO: Open Pro Modal
+			if (error?.response?.status === 403) {
+				proModal.onOpen()
+			}
 			console.log(error)
 		} finally {
 			router.refresh()

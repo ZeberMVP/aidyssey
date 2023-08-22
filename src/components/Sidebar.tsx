@@ -3,13 +3,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 import { cn } from '@/lib/utils'
 import { useUser } from '@clerk/nextjs'
+import { MonitorPause } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { Icons } from './Icons'
 import { usePathname, useRouter } from 'next/navigation'
-import { MonitorPause } from 'lucide-react'
+import { useState } from 'react'
 import FreeCounter from './FreeCounter'
+import { Icons } from './Icons'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -21,6 +21,7 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from './ui/AlertDialog'
+import { useProModal } from '@/hooks/use-pro-modal'
 
 const links = {
 	dashboard: '/dashboard',
@@ -40,6 +41,7 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 	const { user } = useUser()
 	const pathname = usePathname()
 	const router = useRouter()
+	const proModal = useProModal()
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
 	return (
@@ -236,9 +238,9 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 					<div className='w-full bg-slate-300 h-[1px] block'></div>
 					<ul className='list-none relative space-y-2'>
 						<li className='relative'>
-							<Link
-								href='#'
+							<button
 								title='Upgrade'
+								onClick={proModal.onOpen}
 								className={cn(
 									isSidebarOpen ? 'mx-2' : ' w-14',
 									links.settings === pathname ? 'bg-slate-700 rounded-xl' : '',
@@ -256,7 +258,7 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 								>
 									<FreeCounter apiLimitCount={apiLimitCount} />
 								</span>
-							</Link>
+							</button>
 						</li>
 						<li className='relative'>
 							<Link

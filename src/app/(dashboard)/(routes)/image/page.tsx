@@ -24,10 +24,12 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { amountOptions, formSchema, resolutionOptions } from './constants'
+import { useProModal } from '@/hooks/use-pro-modal'
 
 export default function ImagePage() {
 	const router = useRouter()
 	const [images, setImages] = useState<string[]>([])
+	const proModal = useProModal()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -51,7 +53,9 @@ export default function ImagePage() {
 			setImages(urls)
 			form.reset()
 		} catch (error: any) {
-			// TODO: Open Pro Modal
+			if (error?.response?.status === 403) {
+				proModal.onOpen()
+			}
 			console.log(error)
 		} finally {
 			router.refresh()
