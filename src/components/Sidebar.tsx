@@ -50,7 +50,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
 			<nav
 				className={cn(
 					isSidebarOpen ? 'w-72' : 'w-20',
-					'top-0 left-0 h-full fixed flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col'
+					'top-0 left-0 h-full fixed flex bg-slate-900 overflow-x-hidden text-slate-50 flex-col z-50 transition-all duration-300'
 				)}
 			>
 				<div
@@ -286,7 +286,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
 							</Link>
 						</li>
 					</ul>
-					<div className='w-full bg-slate-300 h-[1px] block'></div>
+					<div className='w-full bg-slate-300 h-[1px] block mt-2'></div>
 					<div
 						className={cn(
 							isSidebarOpen ? 'pl-[13px]' : 'pl-[6px]',
