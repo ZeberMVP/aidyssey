@@ -35,9 +35,10 @@ const links = {
 
 interface SidebarProps {
 	apiLimitCount: number
+	isPro: boolean
 }
 
-const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
+const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
 	const { user } = useUser()
 	const pathname = usePathname()
 	const router = useRouter()
@@ -237,29 +238,30 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
 				<div className='flex justify-center flex-col mt-auto'>
 					<div className='w-full bg-slate-300 h-[1px] block'></div>
 					<ul className='list-none relative space-y-2'>
-						<li className='relative'>
-							<button
-								title='Upgrade'
-								onClick={proModal.onOpen}
-								className={cn(
-									isSidebarOpen ? 'mx-2' : ' w-14',
-									links.settings === pathname ? 'bg-slate-700 rounded-xl' : '',
-									'my-0 p-3 text-slate-200 text-xl flex items-center h-14'
-								)}
-							>
-								<MonitorPause className='h-8 w-8 text-slate-200 -ml-[2px]' />
-								<span
+						{isPro ? null : (
+							<li className='relative'>
+								<button
+									title='Upgrade'
+									onClick={proModal.onOpen}
 									className={cn(
-										isSidebarOpen
-											? ''
-											: 'opacity-0 absolute hidden pointer-events-none hide',
-										'ml-[30px] opacity-[1]'
+										isSidebarOpen ? 'mx-2' : ' w-14',
+										'my-0 p-3 text-slate-200 text-xl flex items-center h-14'
 									)}
 								>
-									<FreeCounter apiLimitCount={apiLimitCount} />
-								</span>
-							</button>
-						</li>
+									<MonitorPause className='h-8 w-8 text-slate-200 -ml-[2px]' />
+									<span
+										className={cn(
+											isSidebarOpen
+												? ''
+												: 'opacity-0 absolute hidden pointer-events-none hide',
+											'ml-[30px] opacity-[1]'
+										)}
+									>
+										<FreeCounter apiLimitCount={apiLimitCount} />
+									</span>
+								</button>
+							</li>
+						)}
 						<li className='relative'>
 							<Link
 								href={links.settings}

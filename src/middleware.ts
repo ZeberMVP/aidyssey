@@ -5,7 +5,13 @@ import { authMiddleware } from '@clerk/nextjs/server'
 
 export default authMiddleware({
 	// Public routes are routes that don't require authentication
-	publicRoutes: ['/', '/sign-in(.*)', '/sign-up(.*)', '/sso-callback(.*)'],
+	publicRoutes: [
+		'/',
+		'/sign-in(.*)',
+		'/sign-up(.*)',
+		'/sso-callback(.*)',
+		'/api/webhook',
+	],
 	async afterAuth(auth, req) {
 		if (auth.isPublicRoute) {
 			//  For public routes, we don't need to do anything
