@@ -4,6 +4,7 @@ import { Zap } from 'lucide-react'
 import { Button } from './ui/Button'
 import axios from 'axios'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 interface SubscriptionButtonProps {
 	isPro: boolean
@@ -21,14 +22,18 @@ export const SubscriptionButton = ({
 
 			window.location.href = response.data.url
 		} catch (error) {
-			console.log('BILLING_ERROR', error)
+			toast.error('Something went wrong. Please try again.')
 		} finally {
 			setLoading(false)
 		}
 	}
 
 	return (
-		<Button variant={isPro ? 'default' : 'premium'} onClick={onClick}>
+		<Button
+			variant={isPro ? 'default' : 'premium'}
+			onClick={onClick}
+			disabled={loading}
+		>
 			{isPro ? 'Manage Subscription' : 'Upgrade'}
 			{!isPro && <Zap className='w-4 h-4 ml-2 fill-white' />}
 		</Button>

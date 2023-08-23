@@ -11,7 +11,6 @@ import {
 	Image,
 } from 'lucide-react'
 import { useState } from 'react'
-import { toast } from 'react-hot-toast'
 
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -26,6 +25,7 @@ import {
 } from '@/components/ui/Dialog'
 import { useProModal } from '@/hooks/use-pro-modal'
 import { cn } from '@/lib/utils'
+import { toast } from 'sonner'
 
 const tools = [
 	{

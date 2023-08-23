@@ -25,6 +25,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { amountOptions, formSchema, resolutionOptions } from './constants'
 import { useProModal } from '@/hooks/use-pro-modal'
+import { toast } from 'sonner'
 
 export default function ImagePage() {
 	const router = useRouter()
@@ -55,6 +56,8 @@ export default function ImagePage() {
 		} catch (error: any) {
 			if (error?.response?.status === 403) {
 				proModal.onOpen()
+			} else {
+				toast.error('Something went wrong. Please try again.')
 			}
 			console.log(error)
 		} finally {
