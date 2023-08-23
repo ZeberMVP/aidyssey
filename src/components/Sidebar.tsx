@@ -236,7 +236,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
 					</ul>
 				</div>
 				<div className='flex justify-center flex-col mt-auto'>
-					<div className='w-full bg-slate-300 h-[1px] block'></div>
+					<div className='w-full bg-slate-300 h-[1px] block mb-2'></div>
 					<ul className='list-none relative space-y-2'>
 						{isPro ? null : (
 							<li className='relative'>
