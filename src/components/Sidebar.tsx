@@ -30,6 +30,7 @@ const links = {
 	video: '/video',
 	music: '/music',
 	code: '/code',
+	github: 'https://github.com/ZeberMVP/aidyssey',
 	settings: '/settings',
 }
 
@@ -230,6 +231,28 @@ const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
 									)}
 								>
 									Code
+								</span>
+							</Link>
+						</li>
+						<li className='relative'>
+							<Link
+								href={links.github}
+								title='GitHub Repository'
+								className={cn(
+									isSidebarOpen ? 'mx-2' : ' w-14',
+									'my-0 p-3 text-slate-200 text-xl flex items-center h-14'
+								)}
+							>
+								<Icons.gitHub className='h-8 w-8 text-slate-200 -ml-[2px]' />
+								<span
+									className={cn(
+										isSidebarOpen
+											? ''
+											: 'opacity-0 absolute hidden pointer-events-none hide',
+										'ml-[30px] opacity-[1]'
+									)}
+								>
+									Repository
 								</span>
 							</Link>
 						</li>
