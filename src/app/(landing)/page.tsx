@@ -1,25 +1,23 @@
-'use client'
+"use client";
 
-import { useAuth } from '@clerk/nextjs'
-import Link from 'next/link'
-import { useEffect } from 'react'
+import LandingHero from "@/components/LandingHero";
+import LandingNavbar from "@/components/LandingNavbar";
+import { useAuth } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 export default function LandingPage() {
-	const { isSignedIn } = useAuth()
+  const { isSignedIn } = useAuth();
 
-	useEffect(() => {
-		if (isSignedIn) {
-			window.location.href = '/dashboard'
-		}
-	}, [isSignedIn])
+  useEffect(() => {
+    if (isSignedIn) {
+      window.location.href = "/dashboard";
+    }
+  }, [isSignedIn]);
 
-	return (
-		<div>
-			Landing Page (Unprotected)
-			<div>
-				{' '}
-				<Link href='/dashboard'>Sign In</Link>
-			</div>
-		</div>
-	)
+  return (
+    <>
+      <LandingNavbar />
+      <LandingHero />
+    </>
+  );
 }

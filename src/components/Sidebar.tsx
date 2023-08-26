@@ -240,7 +240,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro }: SidebarProps) => {
 								title='GitHub Repository'
 								className={cn(
 									isSidebarOpen ? 'mx-2' : ' w-14',
-									'my-0 p-3 text-slate-200 text-xl flex items-center h-14'
+									'mt-0 mb-2 p-3 text-slate-200 text-xl flex items-center h-14'
 								)}
 							>
 								<Icons.gitHub className='h-8 w-8 text-slate-200 -ml-[2px]' />
