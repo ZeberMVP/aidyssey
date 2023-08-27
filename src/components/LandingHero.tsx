@@ -41,12 +41,20 @@ const LandingHero = () => {
           Documentation
         </Link>
       </div>
-      <div className="relative mx-auto mt-12 hidden h-[388px] w-[1146px] 2xl:block">
+      <div className="relative mx-auto mt-12 hidden h-[388px] w-9/12 lg:block">
         <Image
           fill
           alt="Hero image"
           src="/images/hero.png"
           className="aspect-square rounded-[300px]"
+        />
+      </div>
+      <div className="relative mx-auto mt-12 h-[300px] w-11/12 sm:h-[388px] lg:hidden">
+        <Image
+          fill
+          alt="Hero image"
+          src="/images/hero.png"
+          className="aspect-square rounded-[40px] sm:rounded-[200px]"
         />
       </div>
     </section>
