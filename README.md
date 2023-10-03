@@ -1,5 +1,5 @@
 # AIdyssey
-Welcome to AIdyssey, the AI-powered SaaS. Here, you can inquire, generate code snippets, images, short music compositions, and videos – all with the assistance of OpenAI and Replicate APIs. You're entitled to up to 5 free generations. After that, you'll need to subscribe to a pro plan (which is not genuine – I'll explain later how you can subscribe for free).
+Welcome to [AIdyssey](https://aidyssey.vercel.app/), the AI-powered SaaS. Here, you can inquire, generate code snippets, images, short music compositions, and videos – all with the assistance of OpenAI and Replicate APIs. You're entitled to up to 5 free generations. After that, you'll need to subscribe to a pro plan (which is not genuine – I'll explain later how you can subscribe for free).
 
 **WARNING: This project is purely for demonstration purposes. While all features are operational, please note that AIdyssey is not an actual company, nor is it generating any profits.**
 
