@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { Toaster } from 'sonner'
+import { Toaster } from "sonner";
 
 export const ToastProvider = ({}) => {
-	return <Toaster position='bottom-center' />
-}
+  return <Toaster richColors />;
+};
